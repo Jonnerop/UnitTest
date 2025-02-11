@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class ExtraTest extends AbstractParent {
 
@@ -35,32 +37,25 @@ public class ExtraTest extends AbstractParent {
         assertEquals(0.0, laskin.annaTulos(), DELTA, "Nollaus ei onnistunut");
     }
 
-    @Test
-    public void testNelio2() {
-        laskin.nelio(2);
-        assertEquals(4.0, laskin.annaTulos(), DELTA, "Luvun 2 neliöön korotus väärin");
+    @ParameterizedTest(name = "Luvun {0} neliö on {1}")
+    @CsvSource({ "2, 4", "4, 16", "5, 25" })
+    public void testNelio(double luku, double expected) {
+        laskin.nelio(luku);
+        assertEquals(expected, laskin.annaTulos(), DELTA, "Neliöön korotus väärin");
     }
 
-    @Test
-    public void testNelio4() {
-        laskin.nelio(4);
-        assertEquals(16.0, laskin.annaTulos(), DELTA, "Luvun 4 neliöön korotus väärin");
+    @ParameterizedTest(name = "Luvun {0} neliöjuuri on {1}")
+    @CsvSource({ "2, 1.414213562", "4, 2.0", "9, 3.0" })
+    public void testNeliojuuri(double luku, double expected) {
+        laskin.neliojuuri(luku);
+        assertEquals(expected, laskin.annaTulos(), DELTA, "Neliöjuuri väärin");
     }
 
-    @Test
-    public void testNelio5() {
-        laskin.nelio(5);
-        assertEquals(25.0, laskin.annaTulos(), DELTA, "Luvun 5 neliöön korotus väärin");
-    }
-    @Test
-    public void testNeliojuuri2() {
-        laskin.neliojuuri(2);
-        assertEquals(Math.sqrt(2), laskin.annaTulos(), DELTA, "Luvun 2 neliöjuuri väärin");
-    }
-    
-    @Test
+    @ParameterizedTest(name = "Testaa negatiivinen neliöjuuri: {0}")
+    @CsvSource({ "-1", "-4", "-9" })
     @DisplayName("Testaa negatiivinen neliöjuuri")
-    public void testNeliojuuriNegat() {
-        assertThrows(IllegalArgumentException.class, () -> laskin.neliojuuri(-4), "Negatiivisen luvun neliöjuuren pitäisi heittää poikkeus");
+    public void testNeliojuuriNegat(double luku) {
+        assertThrows(IllegalArgumentException.class, () -> laskin.neliojuuri(luku),
+                "Negatiivisen luvun neliöjuuren pitäisi heittää poikkeus");
     }
 }
