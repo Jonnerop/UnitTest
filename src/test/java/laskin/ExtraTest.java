@@ -32,30 +32,30 @@ public class ExtraTest extends AbstractParent {
     public void testNollaa() {
         System.out.println("  Nollaa laskin.");
         laskin.nollaa();
-        assertEquals(0, laskin.annaTulos(), "Nollaus ei onnistunut");
+        assertEquals(0.0, laskin.annaTulos(), DELTA, "Nollaus ei onnistunut");
     }
 
     @Test
     public void testNelio2() {
         laskin.nelio(2);
-        assertEquals(4, laskin.annaTulos(), "Luvun 2 Neliöön korotus väärin");
+        assertEquals(4.0, laskin.annaTulos(), DELTA, "Luvun 2 neliöön korotus väärin");
     }
 
     @Test
     public void testNelio4() {
         laskin.nelio(4);
-        assertEquals(16, laskin.annaTulos(),"Luvun 4 neliöön korotus väärin");
+        assertEquals(16.0, laskin.annaTulos(), DELTA, "Luvun 4 neliöön korotus väärin");
     }
 
     @Test
     public void testNelio5() {
         laskin.nelio(5);
-        assertEquals(25, laskin.annaTulos(), DELTA,"Luvun 5 neliöön korotus väärin");
+        assertEquals(25.0, laskin.annaTulos(), DELTA, "Luvun 5 neliöön korotus väärin");
     }
     @Test
     public void testNeliojuuri2() {
         laskin.neliojuuri(2);
-        assertEquals((int) Math.sqrt(2), laskin.annaTulos(), "Luvun 2 neliöjuuri väärin");
+        assertEquals(Math.sqrt(2), laskin.annaTulos(), DELTA, "Luvun 2 neliöjuuri väärin");
     }
     
     @Test

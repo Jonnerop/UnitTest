@@ -2,40 +2,40 @@ package laskin;
 
 public class Laskin {
 
-    private int tulos;  	// Muuttuja tulokselle
+    private double tulos;  	// Muuttuja tulokselle
 
     public void nollaa() {  // Nollaa tulosmuuttuja
         tulos = 0;
     }
 
-    public int annaTulos() {
+    public double annaTulos() {
         return tulos;
     }
 
-    public void lisaa(int n) {
+    public void lisaa(double n) {
         tulos = tulos + n;
     }
 
-    public void vahenna(int n) {
+    public void vahenna(double n) {
         tulos = tulos - n;
     }
 
-    public void kerro(int n) {
+    public void kerro(double n) {
         tulos = tulos * n;
     }
 
-    public void jaa(int n) {
+    public void jaa(double n) {
     	if (n==0) throw new ArithmeticException("Nollalla ei voi jakaa");
         tulos = tulos / n;
     }
 
-    public void nelio(int n) {
+    public void nelio(double n) {
         tulos = (int) Math.pow(n, 2);
     }
 
-    public void neliojuuri(int n) {
+    public void neliojuuri(double n) {
         if (n < 0) throw new IllegalArgumentException("Ei voi laskea negatiivisen luvun neliöjuurta");
-        tulos = (int) Math.sqrt(n);
+        tulos = Math.sqrt(n);
     }
 
     public void virtaON() {

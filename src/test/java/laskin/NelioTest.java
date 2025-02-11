@@ -16,8 +16,8 @@ public class NelioTest {
 
 	@ParameterizedTest (name="Luvun {0} neliö on {1}")
 	@CsvSource({ "0, 0", "1, 1", "2, 4", "4, 16", "5, 25", "6, 36" })
-	public void testNelio(int luku,  int tulos) {
+	public void testNelio(double luku,  double tulos) {
 		laskin.nelio(luku);
-		assertEquals(tulos, laskin.annaTulos(), "Neliöön korotus ei nyt kyllä skulaa");
+		assertEquals(tulos, laskin.annaTulos(), DELTA, "Neliöön korotus ei nyt kyllä skulaa");
 	}
 }
