@@ -1,32 +1,43 @@
 pipeline {
     agent any
+
+    tools {
+        jdk 'Java 21'
+        maven 'Maven 3.9.9'  // Ensure this is correctly configured in Jenkins
+    }
+
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Jonnerop/UnitTest.git'
             }
         }
+
         stage('Build') {
             steps {
                 bat 'mvn clean install'
             }
         }
+
         stage('Test') {
             steps {
                 bat 'mvn test'
             }
         }
+
         stage('Code Coverage') {
             steps {
                 bat 'mvn jacoco:report'
             }
         }
-        stage('Publibat Test Results') {
+
+        stage('Publish Test Results') {  // Fixed spelling
             steps {
                 junit '**/target/surefire-reports/*.xml'
             }
         }
-        stage('Publibat Coverage Report') {
+
+        stage('Publish Coverage Report') {  // Fixed spelling
             steps {
                 jacoco()
             }
